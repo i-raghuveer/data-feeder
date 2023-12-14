@@ -1,0 +1,5 @@
+com\brahmin\community\info\datafeeder\RegistrantService.class
+com\brahmin\community\info\datafeeder\RegistrantRepository.class
+com\brahmin\community\info\datafeeder\Registrant.class
+com\brahmin\community\info\datafeeder\RegistrantController.class
+com\brahmin\community\info\datafeeder\DataFeederApplication.class
