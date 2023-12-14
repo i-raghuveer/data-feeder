@@ -19,7 +19,8 @@ public class RegistrantService {
 
     public void readExcelAndSaveToDatabase(String filePath) {
         try {
-            InputStream inputStream = new FileInputStream("C:\\bsss_data\\registration_details.xlsx");
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("registration_details.xlsx");
             Workbook workbook = WorkbookFactory.create(inputStream);
 
             Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
