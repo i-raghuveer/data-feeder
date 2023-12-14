@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+</head>
+<body>
+<h1>Search</h1>
+
+<form th:action="@{/search}" method="post">
+    <input type="text" name="firstName" th:value="${param.firstName}" placeholder="firstName">
+    <input type="text" name="lastName" th:value="${param.lastName}" placeholder="lastName">
+    <input type="text" name="designation" th:value="${param.designation}" placeholder="designation">
+    <input type="text" name="phoneNumber" th:value="${param.phoneNumber}" placeholder="phoneNumber ">
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${results}">
+    <h2>Search Results</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>first name</th>
+            <th>last name</th>
+            <th>phone number</th>
+            <th>address</th>
+            <th>designation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.firstName}"></td>
+            <td th:text="${result.lastName}"></td>
+            <td th:text="${result.phoneNumber}"></td>
+            <td th:text="${result.address}"></td>
+            <td th:text="${result.designation}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
