@@ -17,11 +17,10 @@ public class RegistrantController {
         this.registrantService = registrantService;
     }
 
-    @PostMapping("/uploadExcel")
+    @GetMapping("/uploadExcel")
     @ResponseBody
-    public void uploadExcelFile(@RequestParam("file") String filePath) {
-        System.out.println("filePath: "+filePath);
-        registrantService.readExcelAndSaveToDatabase(filePath);
+    public void uploadExcelFile() {
+        registrantService.readExcelAndSaveToDatabase();
     }
 
     @GetMapping("/details")

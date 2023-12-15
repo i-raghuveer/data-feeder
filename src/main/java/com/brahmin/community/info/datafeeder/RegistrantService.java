@@ -17,7 +17,7 @@ public class RegistrantService {
         this.registrantRepository = registrantRepository;
     }
 
-    public void readExcelAndSaveToDatabase(String filePath) {
+    public void readExcelAndSaveToDatabase() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("registration_details.xlsx");
