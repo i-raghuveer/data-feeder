@@ -9,14 +9,22 @@ import java.util.List;
 public interface RegistrantRepository extends JpaRepository<Registrant, Long> {
     // You can add custom query methods if needed
 
-    public List<Registrant> findByFirstNameContaining(String firstName);
+    public List<Registrant> findByFirstNameContainingIgnoreCase(String firstName);
 
-    public List<Registrant> findByLastNameContaining(String lastName);
+    public List<Registrant> findByAddressContainingIgnoreCase(String firstName);
 
-    public List<Registrant> findByDesignationContaining(String designation);
+    public List<Registrant> findByLastNameContainingIgnoreCase(String lastName);
+
+    public List<Registrant> findByOccupationContainingIgnoreCase(String designation);
 
     public List<Registrant> findByPhoneNumber(long phoneNumber);
 
-    public List<Registrant> findByFirstNameContainingOrLastNameContainingOrDesignationContainingOrPhoneNumber(
+    public List<Registrant> findByFirstNameContainingOrLastNameContainingOrOccupationContainingOrPhoneNumber(
             String firstName, String lastName,String designation, long phoneNumber);
+
+    List<Registrant> findByGothramContainingIgnoreCase(String gothram);
+
+    List<Registrant> findBySetContainingIgnoreCase(String set);
+
+    List<Registrant> findByMarriedContainingIgnoreCase(String married);
 }

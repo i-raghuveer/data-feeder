@@ -38,7 +38,7 @@ public class RegistrantController {
     @GetMapping("/details/designation")
     @ResponseBody
     public List<Registrant> getDetailsByDesignation(@RequestParam("designation") String designation){
-        return registrantService.getDetailsByDesignation(designation);
+        return registrantService.getDetailsByOccupation(designation);
     }
 
 //    @GetMapping("/details/name")
@@ -53,12 +53,21 @@ public class RegistrantController {
     }
 
     @PostMapping("/search")
-    public String performSearch(@RequestParam("firstName") String firstName,
-                                @RequestParam("lastName") String lastName,
-                                @RequestParam("designation") String designation,
-                                @RequestParam("phoneNumber") String phoneNumber,
+    public String performSearch(
+            @RequestParam(name = "selectedColumn", required = false, defaultValue = "") String selectedColumn,
+            @RequestParam(name = "searchKeyword", required = false, defaultValue = "") String searchKeyword,
+            @RequestParam(name = "firstName", required = false, defaultValue = "") String firstName,
+                                @RequestParam(name = "lastName", required = false, defaultValue = "") String lastName,
+                                @RequestParam(name = "occupation", required = false, defaultValue = "") String occupation,
+                                @RequestParam(name = "phoneNumber", required = false, defaultValue = "") String phoneNumber,
+            @RequestParam(name = "gothram", required = false, defaultValue = "") String gothram,
+            @RequestParam(name = "set", required = false, defaultValue = "") String set,
+            @RequestParam(name = "married", required = false, defaultValue = "") String married,
                                 Model model) {
-        List<Registrant> searchResults = registrantService.search(firstName,lastName,designation,phoneNumber);
+        System.out.println("searchKeyword: "+searchKeyword+" selectedColumn: "+selectedColumn);
+        System.out.println("firstName: "+firstName+"lastName: "+lastName+"occupation: "+occupation+"phoneNumber: "+phoneNumber+"gothram: "+gothram+"set: "+set+"married: "+married);
+        List<Registrant> searchResults = registrantService.searchKey(searchKeyword,selectedColumn);
+//        List<Registrant> searchResults = registrantService.search(firstName,lastName,occupation,phoneNumber,gothram,set,married);
         model.addAttribute("results", searchResults);
         return "search"; // Assuming "search.html" is your Thymeleaf template for the search form
     }

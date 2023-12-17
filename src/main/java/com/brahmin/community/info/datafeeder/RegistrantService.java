@@ -1,9 +1,9 @@
 package com.brahmin.community.info.datafeeder;
 
+import jakarta.annotation.PostConstruct;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.*;
@@ -17,6 +17,7 @@ public class RegistrantService {
         this.registrantRepository = registrantRepository;
     }
 
+    @PostConstruct
     public void readExcelAndSaveToDatabase() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
@@ -36,7 +37,7 @@ public class RegistrantService {
                     headers.add(cell.getStringCellValue());
                 }
             }
-
+            System.out.println("headers: "+headers);
             // Process data rows using the header values obtained earlier
             Iterator<Row> rowIterator = sheet.iterator();
             // Skip the header row while iterating
@@ -51,22 +52,28 @@ public class RegistrantService {
 
                 // Iterate through cells of the current row
                 Iterator<Cell> cellIterator = row.cellIterator();
+                DataFormatter formatter=new DataFormatter();
                 int columnIndex = 0;
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
                     String header = headers.get(columnIndex);
-
+                    System.out.println("header: "+header);
                     switch(header)  {
-                        case "first_name" : registrant.setFirstName(cell.getStringCellValue());
-                        case "last_name" : registrant.setLastName(cell.getStringCellValue());
-                        case "address" : registrant.setAddress(cell.getStringCellValue());
-                        case "designation" : registrant.setDesignation(cell.getStringCellValue());
-                    }
-
-                    if ("phone_number".equalsIgnoreCase(header)){
-                        registrant.setPhoneNumber(
-                                Long.parseLong(new DataFormatter().formatCellValue(cell)));
-
+                        case "first_name" : registrant.setFirstName(cell.getStringCellValue()); break;
+                        case "last_name" : registrant.setLastName(cell.getStringCellValue()); break;
+                        case "address" : registrant.setAddress(cell.getStringCellValue()); break;
+                        case "occupation" : registrant.setOccupation(cell.getStringCellValue()); break;
+                        case "care_of" : registrant.setCareOf(cell.getStringCellValue()); break;
+                        case "relation" : registrant.setRelation(cell.getStringCellValue()); break;
+                        case "dob" : registrant.setDob(formatter.formatCellValue(cell)); break;
+                        case "registration_date" : registrant.setRegistrationDate(formatter.formatCellValue(cell)); break;
+                        case "gothram" : registrant.setGothram(cell.getStringCellValue()); break;
+                        case "native_place" : registrant.setNativePlace(cell.getStringCellValue()); break;
+                        case "set" : registrant.setSet(cell.getStringCellValue()); break;
+                        case "sub_set" : registrant.setSubSet(formatter.formatCellValue(cell)); break;
+                        case "married" : registrant.setMarried(cell.getStringCellValue()); break;
+                        case "phone_number" : registrant.setPhoneNumber(
+                                Long.parseLong(formatter.formatCellValue(cell))); break;
                     }
 
                     columnIndex++;
@@ -92,24 +99,49 @@ public class RegistrantService {
         return registrantRepository.findByPhoneNumber(phoneNumber);
     }
 
-    public List<Registrant> getDetailsByDesignation(String designation){
-        return registrantRepository.findByDesignationContaining(designation);
+    public List<Registrant> getDetailsByOccupation(String designation){
+        return registrantRepository.findByOccupationContainingIgnoreCase(designation);
     }
 
-    public List<Registrant> search(String firstName, String lastName,String designation, String phoneNumber){
+    public List<Registrant> searchKey(String searchKeyword, String selectedColumn){
 
-        if(!phoneNumber.isBlank()){
+        System.out.println("searchKeyword: "+searchKeyword);
+
+        switch (selectedColumn){
+            case "phoneNumber": return getDetailsByPhoneNumber(Long.parseLong(searchKeyword));
+            case "occupation": return getDetailsByOccupation(searchKeyword);
+            case "firstName": return registrantRepository.findByFirstNameContainingIgnoreCase(searchKeyword);
+            case "lastName": return registrantRepository.findByLastNameContainingIgnoreCase(searchKeyword);
+            case "gothram": return registrantRepository.findByGothramContainingIgnoreCase(searchKeyword);
+            case "set": return registrantRepository.findBySetContainingIgnoreCase(searchKeyword);
+            case "married": return registrantRepository.findByMarriedContainingIgnoreCase(searchKeyword);
+            case "address": return registrantRepository.findByAddressContainingIgnoreCase(searchKeyword);
+            default: return registrantRepository.findAll();
+    }
+}
+
+    public List<Registrant> search(String firstName, String lastName,String occupation, String phoneNumber, String gothram, String set, String married){
+
+        System.out.println("firstName: "+firstName+"lastName: "+lastName+"occupation: "+occupation+"phoneNumber: "+phoneNumber+"gothram: "+gothram+"set: "+set+"married: "+married);
+
+        if(phoneNumber!=null && !phoneNumber.isBlank()){
             return getDetailsByPhoneNumber(Long.parseLong(phoneNumber));
-        } else if (!designation.isBlank()) {
-            return getDetailsByDesignation(designation);
+        } else if (!occupation.isBlank()) {
+            return getDetailsByOccupation(occupation);
         } else if (!firstName.isBlank()) {
-            return registrantRepository.findByFirstNameContaining(firstName);
+            return registrantRepository.findByFirstNameContainingIgnoreCase(firstName);
         } else if (!lastName.isBlank()) {
-            return registrantRepository.findByLastNameContaining(lastName);
+            return registrantRepository.findByLastNameContainingIgnoreCase(lastName);
+        } else if (!gothram.isBlank()) {
+            return registrantRepository.findByGothramContainingIgnoreCase(gothram);
+        } else if (!set.isBlank()) {
+            return registrantRepository.findBySetContainingIgnoreCase(set);
+        } else if (!married.isBlank()) {
+            return registrantRepository.findByMarriedContainingIgnoreCase(married);
         }
 
         return registrantRepository.
-                findByFirstNameContainingOrLastNameContainingOrDesignationContainingOrPhoneNumber
-                        (firstName,lastName,designation,(!phoneNumber.isBlank())?Long.parseLong(phoneNumber):0);
+                findByFirstNameContainingOrLastNameContainingOrOccupationContainingOrPhoneNumber
+                        (firstName,lastName,occupation,(!phoneNumber.isBlank())?Long.parseLong(phoneNumber):0);
     }
 }

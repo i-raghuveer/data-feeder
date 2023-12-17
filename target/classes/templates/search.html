@@ -14,8 +14,18 @@
             <select name="selectedColumn" class="form-control">
                 <option value="firstName">First Name</option>
                 <option value="lastName">Last Name</option>
-                <option value="designation">Designation</option>
+                <option value="occupation">Occupation</option>
                 <option value="phoneNumber">Phone Number</option>
+                <option value="careOf">Care of</option>
+                <option value="address">Address</option>
+                <option value="relation">Relation</option>
+                <option value="dob">DOB</option>
+                <option value="registrationDate">Regn. Date</option>
+                <option value="gothram">Gothram</option>
+                <option value="nativePlace">Native place</option>
+                <option value="set">Set</option>
+                <option value="subSet">Sub Set</option>
+                <option value="married">Married</option>
                 <!-- Add more options for other columns -->
             </select>
             <input type="text" name="searchKeyword" th:value="${param.searchKeyword}" placeholder="Type your search here..." class="form-control">
@@ -30,8 +40,20 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Designation</th>
+                <th>Occupation</th>
                 <th>Phone Number</th>
+                <th>Care of</th>
+                <th>Address</th>
+                <th>Relation</th>
+                <th>DOB</th>
+                <th>Regn. Date</th>
+                <th>Gothram</th>
+                <th>Native Place</th>
+                <th>Set</th>
+                <th>Sub set</th>
+                <th>Married</th>
+
+
                 <!-- Add more headers for other columns -->
             </tr>
             </thead>
@@ -39,8 +61,18 @@
             <tr th:each="result : ${results}">
                 <td th:text="${result.firstName} ? ${result.firstName} : ''"></td>
                 <td th:text="${result.lastName} ? ${result.lastName} : ''"></td>
-                <td th:text="${result.designation} ? ${result.designation} : ''"></td>
+                <td th:text="${result.occupation} ? ${result.occupation} : ''"></td>
                 <td th:text="${result.phoneNumber} ? ${result.phoneNumber} : ''"></td>
+                <td th:text="${result.careOf} ? ${result.careOf} : ''"></td>
+                <td th:text="${result.address} ? ${result.address} : ''"></td>
+                <td th:text="${result.relation} ? ${result.relation} : ''"></td>
+                <td th:text="${result.dob} ? ${result.dob} : ''"></td>
+                <td th:text="${result.registrationDate} ? ${result.registrationDate} : ''"></td>
+                <td th:text="${result.gothram} ? ${result.gothram} : ''"></td>
+                <td th:text="${result.nativePlace} ? ${result.nativePlace} : ''"></td>
+                <td th:text="${result.set} ? ${result.set} : ''"></td>
+                <td th:text="${result.subSet} ? ${result.subSet} : ''"></td>
+                <td th:text="${result.married} ? ${result.married} : ''"></td>
                 <!-- Add more columns for other properties -->
             </tr>
             </tbody>
