@@ -1,0 +1,102 @@
+/* styles.css */
+
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f0ff; /* Light purple background */
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #4b2e83; /* Dark purple heading color */
+    margin-bottom: 20px;
+}
+
+/* Form styles */
+.search-form {
+    background-color: #ffffff; /* White form background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    flex: 1 1 calc(30% - 10px);
+    margin: 0 5px;
+    padding: 12px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    color: #333;
+}
+
+.form-control:focus {
+    border-color: #9370db; /* Medium purple focus border */
+    box-shadow: 0 0 6px rgba(147, 112, 219, 0.5);
+}
+
+.btn-search {
+    flex: 1 1 calc(15% - 10px);
+    margin: 0 5px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #9370db; /* Medium purple button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.btn-search:hover {
+    background-color: #7a52af; /* Darker purple on hover */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* White table background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #ccc; /* Light border */
+    padding: 14px;
+    text-align: left;
+    color: #333;
+}
+
+th {
+    background-color: #f5f0ff; /* Light purple header background */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .form-control,
+    .btn-search {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
