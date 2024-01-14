@@ -1,20 +1,27 @@
 package com.brahmin.community.info.datafeeder;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class RegistrantController {
 
     private final RegistrantService registrantService;
 
+    private final ExcelService excelService;
+
     @Autowired
-    public RegistrantController(RegistrantService registrantService) {
+    public RegistrantController(RegistrantService registrantService, ExcelService excelService) {
         this.registrantService = registrantService;
+        this.excelService = excelService;
     }
 
     @GetMapping("/uploadExcel")
@@ -39,6 +46,11 @@ public class RegistrantController {
     @ResponseBody
     public List<Registrant> getDetailsByDesignation(@RequestParam("designation") String designation){
         return registrantService.getDetailsByOccupation(designation);
+    }
+
+    @GetMapping("/home")
+    public String showHome() {
+        return "home"; // Assuming "search.html" is your Thymeleaf template for the search form
     }
 
 //    @GetMapping("/details/name")
@@ -71,4 +83,35 @@ public class RegistrantController {
         model.addAttribute("results", searchResults);
         return "search"; // Assuming "search.html" is your Thymeleaf template for the search form
     }
+
+    @PostMapping("/application/submit")
+    @ResponseBody
+    public String performApplicationSubmit(
+            @RequestParam(name = "email", required = false, defaultValue = "") String email,
+            Model model) {
+        System.out.println("email: "+email);
+        return "success";
+    }
+
+    @GetMapping("/write-to-git")
+    @ResponseBody
+    public String writeToGit() {
+        log.info("IN");
+        try {
+            Registrant registrant = new Registrant();
+            registrant.setFirstName("FN1");
+            registrant.setLastName("LN1");
+            registrant.setAddress("Adress1");
+            registrant.setDob("01-01-2024");
+            registrant.setRegistrationDate("14-01-2024");
+            registrant.setPhoneNumber(1111111111);
+            excelService.insertRegistrantData(registrant);
+            return "Excel file written and uploaded to GitHub successfully.";
+        } catch (Exception e) {
+            log.error("error: ",e);
+            return "Error: " + e.getMessage();
+        }
+    }
+
+
 }

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap">
+    <title>BSSS West Zone</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            font-size: 16px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .slider {
+            width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        section {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .vision, .mission, .values {
+            flex: 0 0 30%;
+            box-sizing: border-box;
+            margin: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .vision:hover, .mission:hover, .values:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #applyModal {
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #applyModal form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        #applyModal h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        #applyModal label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        #applyModal input,
+        #applyModal textarea,
+        #applyModal [type="date"],
+        #applyModal [type="time"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #applyModal button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #applyModal button:hover {
+            background-color: #45a049;
+        }
+
+        #applyModal button,
+        #applyModal [type="submit"] {
+            width: 100%;
+        }
+
+        #applyModal button:last-child {
+            background-color: #ddd;
+            color: black;
+            margin-top: 10px;
+        }
+
+        #applyModal button:last-child:hover {
+            background-color: #bbb;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+
+            header {
+                padding: 10px;
+            }
+
+            nav {
+                padding: 5px;
+            }
+
+            .slider {
+                width: 100%;
+            }
+
+            .vision, .mission, .values {
+                flex: 0 0 100%;
+                margin: 10px 0;
+            }
+
+            #applyModal form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Your Logo">
+</header>
+
+<nav>
+    <a href="#home" th:href="@{/home}">Home</a>
+    <a href="#about" th:href="@{/about}">About Us</a>
+    <a href="#contact" th:href="@{/contact}">Contact</a>
+    <a href="#" onclick="openApplyModal()">Apply Now</a>
+</nav>
+
+<section>
+    <!-- Photo Slider -->
+    <div class="slider">
+        <div class="slider-container">
+            <div class="slide"><img src="image1.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="image2.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="image3.jpg" alt="Image 3"></div>
+<!--            <div class="slide"><img src="image4.jpg" alt="Image 4"></div>-->
+            <!-- Add more images as needed -->
+        </div>
+    </div>
+
+    <!-- Your webpage content goes here -->
+    <h1 style="text-align: center; color: #333;">Welcome To Brahmana Seva Sanga Samakya</h1>
+    <p style="text-align: center; color: #666;">We are trying to bring all our organizations, activities, and related information under one umbrella.
+
+        The Brahmin community is neglected by society for many reasons. Some could sustain and some could not. We must introspect and find out what is missing. The first and foremost problem in our community is there is no consensus among us. A big request to everyone, we must introspect and find out what is missing and try to fill up the gap</p>
+
+    <!-- Vision, Mission, Values -->
+    <div class="vision">
+        <h2>Vision</h2>
+        <p>Our vision statement goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="mission">
+        <h2>Mission</h2>
+        <p>Our mission statement goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="values">
+        <h2>Values</h2>
+        <p>Our core values go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+</section>
+
+<!-- Application Form Modal -->
+<div id="applyModal">
+    <form>
+        <h2>Application Form</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br>
+
+        <label for="tob">Time of Birth:</label>
+        <input type="time" id="tob" name="tob" required><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea><br>
+
+        <button type="button" onclick="submitApplication()">Submit</button>
+        <button type="button" onclick="closeApplyModal()">Close</button>
+    </form>
+</div>
+
+<footer>
+    <p>Address: Your Company Address, City, Country</p>
+    <p>Contact: info@yourcompany.com | Phone: +1 (555) 123-4567</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sliderContainer = document.querySelector('.slider-container');
+        let currentIndex = 0;
+
+        function showNextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            currentIndex = (currentIndex + 1) % slides.length;
+
+            const translateValue = -currentIndex * 100;
+            sliderContainer.style.transition = 'transform 1s ease-in-out';
+            sliderContainer.style.transform = `translateX(${translateValue}%)`;
+        }
+
+        setInterval(showNextSlide, 5000); // Change 5000 to the desired interval in milliseconds
+    });
+
+    function openApplyModal() {
+        document.getElementById('applyModal').style.display = 'flex';
+    }
+
+    function closeApplyModal() {
+        document.getElementById('applyModal').style.display = 'none';
+    }
+
+    function submitApplication() {
+        // Fetch the form data
+        const formData = new FormData(document.querySelector('#applyModal form'));
+
+        // Perform your submission logic, for example using fetch API
+        fetch('/application/submit', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Change to response.text() if expecting plain text
+        })
+        .then(data => {
+            // Handle the success response
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('There was a problem with the fetch operation:', error);
+        });
+
+        // Close the modal
+        closeApplyModal();
+    }
+</script>
+
+</body>
+</html>
