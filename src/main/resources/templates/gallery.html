@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap">
+    <link rel="stylesheet" href="/css/gallery.css">
+    <link rel="stylesheet" href="/css/common-styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="/script/common-script.js"></script>
+    <title>BSSS West Zone - Gallery</title>
+    <!-- Include any additional styles specific to the gallery page if needed -->
+
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <div class="dropdown">
+        <div class="dropbtn" onclick="myFunction(this)">
+            Menu📃
+        </div>
+
+        <div class="dropdown-content" id="myDropdown">
+            <a href="#home" onclick="showSection('home')" th:href="@{/home}">Home</a>
+            <a href="#gallery" onclick="showSection('gallery')" th:href="@{/gallery}">Gallery</a>
+            <a href="#upcoming-events" onclick="showSection('upcoming-events')" th:href="@{/upcoming-events}">Vivaha
+                Parichaya Vedika-2024</a>
+        </div>
+    </div>
+
+    <img alt="BSSS Logo" class="logo" src="logo.png">
+</header>
+
+<!-- Gallery Page Content -->
+<section>
+
+    <!-- Gallery Images -->
+    <div class="tile">
+        <img src="image1.jpg" alt="Gallery Image 1">
+    </div>
+
+    <div class="tile">
+        <img src="image2.jpg" alt="Gallery Image 1">
+    </div>
+    <div class="tile">
+        <img src="image3.jpg" alt="Gallery Image 1">
+    </div>
+
+    <div class="tile">
+        <img src="image4.jpg" alt="Gallery Image 1">
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Address: Plot no. 52B, Block no. 11, Phase 1, Near Saibaba temple, Janapriya apartments, Miyapur,
+        Hyderabad-500049.</p>
+    <p>Contact: +91 9700856685</p>
+</footer>
+<!-- Include any additional scripts specific to the gallery page if needed -->
+
+</body>
+
+</html>

@@ -53,6 +53,16 @@ public class RegistrantController {
         return "home"; // Assuming "search.html" is your Thymeleaf template for the search form
     }
 
+    @GetMapping("/gallery")
+    public String showGallery() {
+        return "gallery"; // Assuming "search.html" is your Thymeleaf template for the search form
+    }
+
+    @GetMapping("/upcoming-events")
+    public String showupcomingevents() {
+        return "upcomingevents"; // Assuming "search.html" is your Thymeleaf template for the search form
+    }
+
 //    @GetMapping("/details/name")
 //    @ResponseBody
 //    public List<Registrant> getDetailsByName(@RequestParam("first_name") String firstName,@RequestParam("last_name") String lastName){

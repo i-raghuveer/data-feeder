@@ -1,0 +1,35 @@
+        section {
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+        }
+
+        .regn, .pay {
+                    flex: 0 0 43%;
+                    box-sizing: border-box;
+                    margin: 10px;
+                    background-color: #ecf0f1;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                    transition: transform 0.3s;
+                }
+
+                .regn:hover, .pay:hover {
+                    transform: scale(1.01);
+                }
+
+        p.contact-info {
+                color: #333;
+                text-align: center;
+                width: 100%;
+                font-size: larger;
+        }
+
+        p.contact-info i {
+            margin-right: 5px;
+        }

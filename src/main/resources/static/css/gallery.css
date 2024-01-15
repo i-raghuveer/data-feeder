@@ -1,0 +1,38 @@
+section {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+
+        .tile {
+                            flex: 0 0 45%;
+                            box-sizing: border-box;
+                            margin: 10px;
+                            background-color: #ecf0f1;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                            transition: transform 0.3s;
+                            height: 280px;
+                        }
+
+                        .tile:hover {
+                            transform: scale(1.02);
+                        }
+                        .tile img {
+                        height: 100%;
+                        width: 100%;
+                          object-fit: fill;
+                        /* or
+                          object-fit: cover; */
+                        }
+
+                        @media only screen and (max-width: 600px) {
+                                    .tile {
+                                        flex: 0 0 43%;
+                                        padding: 5px;
+                                        height: 133px;
+                                    }
+                                }

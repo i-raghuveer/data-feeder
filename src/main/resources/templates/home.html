@@ -1,236 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap">
-    <title>BSSS West Zone</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-            font-size: 16px;
-        }
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/common-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        header img {
-            width: 80px;
-            height: auto;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #4CAF50;
-        }
-
-        .slider {
-            width: 100%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .slider-container {
-            display: flex;
-            transition: transform 1s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-        }
-
-        section {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .vision, .mission, .values {
-            flex: 0 0 30%;
-            box-sizing: border-box;
-            margin: 10px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .vision:hover, .mission:hover, .values:hover {
-            transform: scale(1.05);
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            bottom: 0;
-            width: 100%;
-        }
-
-        #applyModal {
-            display: none;
-            background: rgba(0, 0, 0, 0.5);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #applyModal form {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        #applyModal h2 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        #applyModal label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        #applyModal input,
-        #applyModal textarea,
-        #applyModal [type="date"],
-        #applyModal [type="time"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        #applyModal button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #applyModal button:hover {
-            background-color: #45a049;
-        }
-
-        #applyModal button,
-        #applyModal [type="submit"] {
-            width: 100%;
-        }
-
-        #applyModal button:last-child {
-            background-color: #ddd;
-            color: black;
-            margin-top: 10px;
-        }
-
-        #applyModal button:last-child:hover {
-            background-color: #bbb;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        @media only screen and (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-
-            header {
-                padding: 10px;
-            }
-
-            nav {
-                padding: 5px;
-            }
-
-            .slider {
-                width: 100%;
-            }
-
-            .vision, .mission, .values {
-                flex: 0 0 100%;
-                margin: 10px 0;
-            }
-
-            #applyModal form {
-                width: 100%;
-            }
-        }
-    </style>
+    <script src="/script/common-script.js"></script>
 </head>
+
 <body>
 
+<!-- Pop-up for Home Page -->
+<div id="homePopup">
+    <div id="homePopup-content">
+        <h2>Vivaha Parichaya Vedika 2024</h2>
+        <a href="#upcoming-events" onclick="showSection('upcoming-events')" th:href="@{/upcoming-events}">Register
+            Now</a>
+        <img alt="Your Logo" src="popup_image.jpg">
+        <button class="closeButton" onclick="document.getElementById('homePopup').style.display = 'none';">close</button>
+    </div>
+</div>
+
 <header>
-    <img src="logo.png" alt="Your Logo">
-</header>
+    <div class="dropdown">
+        <div class="dropbtn" onclick="myFunction(this)">
+<!--            <div class="bar1"></div>-->
+<!--            <div class="bar2" onclick="myFunction(this)"></div>-->
+<!--            <div class="bar3"></div>-->
+            Menu📃
+        </div>
 
-<nav>
-    <a href="#home" th:href="@{/home}">Home</a>
-    <a href="#about" th:href="@{/about}">About Us</a>
-    <a href="#contact" th:href="@{/contact}">Contact</a>
-    <a href="#" onclick="openApplyModal()">Apply Now</a>
-</nav>
-
-<section>
-    <!-- Photo Slider -->
-    <div class="slider">
-        <div class="slider-container">
-            <div class="slide"><img src="image1.jpg" alt="Image 1"></div>
-            <div class="slide"><img src="image2.jpg" alt="Image 2"></div>
-            <div class="slide"><img src="image3.jpg" alt="Image 3"></div>
-<!--            <div class="slide"><img src="image4.jpg" alt="Image 4"></div>-->
-            <!-- Add more images as needed -->
+        <div class="dropdown-content" id="myDropdown">
+            <a href="#home" onclick="showSection('home')" th:href="@{/home}">Home</a>
+            <a href="#gallery" onclick="showSection('gallery')" th:href="@{/gallery}">Gallery</a>
+            <a href="#upcoming-events" onclick="showSection('upcoming-events')" th:href="@{/upcoming-events}">Vivaha
+                Parichaya Vedika-2024</a>
         </div>
     </div>
 
-    <!-- Your webpage content goes here -->
-    <h1 style="text-align: center; color: #333;">Welcome To Brahmana Seva Sanga Samakya</h1>
-    <p style="text-align: center; color: #666;">We are trying to bring all our organizations, activities, and related information under one umbrella.
+    <img alt="BSSS Logo" class="logo" src="logo.png">
+</header>
 
-        The Brahmin community is neglected by society for many reasons. Some could sustain and some could not. We must introspect and find out what is missing. The first and foremost problem in our community is there is no consensus among us. A big request to everyone, we must introspect and find out what is missing and try to fill up the gap</p>
 
-    <!-- Vision, Mission, Values -->
+<section id="home">
+    <div class="slider">
+        <div class="slider-container">
+            <div class="slide"><img alt="Image 1" src="image1.jpg"></div>
+            <div class="slide"><img alt="Image 2" src="image2.jpg"></div>
+        </div>
+    </div>
+    <h1>Welcome To Brahmana Seva Sanga Samakya - West Zone</h1>
+    <p style="text-align: center; color: #333;">We are trying to bring all our organizations, activities, and related
+        information under one umbrella.
+        The Brahmin community is neglected by society for many reasons. Some could sustain and some could not. We must
+        introspect and find out what is missing. The first and foremost problem in our community is there is no
+        consensus among us. A big request to everyone, we must introspect and find out what is missing and try to fill
+        up the gap</p>
     <div class="vision">
         <h2>Vision</h2>
         <p>Our vision statement goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -247,33 +76,10 @@
     </div>
 </section>
 
-<!-- Application Form Modal -->
-<div id="applyModal">
-    <form>
-        <h2>Application Form</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required><br>
-
-        <label for="tob">Time of Birth:</label>
-        <input type="time" id="tob" name="tob" required><br>
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea><br>
-
-        <button type="button" onclick="submitApplication()">Submit</button>
-        <button type="button" onclick="closeApplyModal()">Close</button>
-    </form>
-</div>
-
 <footer>
-    <p>Address: Your Company Address, City, Country</p>
-    <p>Contact: info@yourcompany.com | Phone: +1 (555) 123-4567</p>
+    <p>Address: Plot no. 52B, Block no. 11, Phase 1, Near Saibaba temple, Janapriya apartments, Miyapur,
+        Hyderabad-500049.</p>
+    <p>Contact: +91 9700856685</p>
 </footer>
 
 <script>
@@ -290,45 +96,31 @@
             sliderContainer.style.transform = `translateX(${translateValue}%)`;
         }
 
-        setInterval(showNextSlide, 5000); // Change 5000 to the desired interval in milliseconds
+        setInterval(showNextSlide, 5000);
+
+        // Function to show the pop-up
+        function showPopup() {
+            const popup = document.getElementById('homePopup');
+            popup.style.display = 'flex';
+        }
+
+        // Call the showPopup function after a delay (e.g., 3 seconds)
+        setTimeout(showPopup, 3000);
     });
 
-    function openApplyModal() {
-        document.getElementById('applyModal').style.display = 'flex';
-    }
-
-    function closeApplyModal() {
-        document.getElementById('applyModal').style.display = 'none';
-    }
-
-    function submitApplication() {
-        // Fetch the form data
-        const formData = new FormData(document.querySelector('#applyModal form'));
-
-        // Perform your submission logic, for example using fetch API
-        fetch('/application/submit', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Change to response.text() if expecting plain text
-        })
-        .then(data => {
-            // Handle the success response
-            console.log(data);
-        })
-        .catch(error => {
-            // Handle errors
-            console.error('There was a problem with the fetch operation:', error);
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('section').forEach(function (section) {
+            section.style.display = 'none';
         });
 
-        // Close the modal
-        closeApplyModal();
+        // Show the selected section
+        if (sectionId) {
+            document.getElementById(sectionId).style.display = 'block';
+        }
     }
 </script>
 
 </body>
+
 </html>
