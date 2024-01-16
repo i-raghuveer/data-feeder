@@ -33,3 +33,10 @@
         p.contact-info i {
             margin-right: 5px;
         }
+
+        .app-download{
+
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+        }
