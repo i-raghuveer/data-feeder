@@ -40,3 +40,8 @@
     padding: 0px;
     margin: 0px;
         }
+
+        .qrcode{
+        height=50px: !important;
+            width=50%: !important;
+        }
